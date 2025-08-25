@@ -1,0 +1,17 @@
+@use "../node_modules/@picocss/pico/scss/pico" with (
+  $modules: (
+    "themes/default": false
+  ),
+  $theme-color: "jade",
+  $enable-classes: false,
+  $enable-semantic-container: true,
+  $semantic-root-element: ".layout",
+);
+
+@use "theme/styles";
+@use "theme/schemes";
+@use "./variables";
+@import "../node_modules/rpg-awesome/scss/rpg-awesome";
+@import "./layout";
+@import "./custom";
+

@@ -1,0 +1,14 @@
+{
+  "name": "annotated_django_vue",
+  "version": "1.0.0",
+  "scripts": {
+    "build-css": "sass --quiet scss/main.scss rpgdice/static/css/main.css",
+    "watch-css": "sass --watch --quiet scss/main.scss rpgdice/static/css/main.css"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@picocss/pico": "^2.1.1",
+    "rpg-awesome": "^0.2.0",
+    "sass": "^1.89.2"
+  }
+}

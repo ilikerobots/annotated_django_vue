@@ -1,0 +1,35 @@
+{
+  "name": "vue_frontend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build"
+  },
+  "dependencies": {
+    "motion-v": "^1.7.0",
+    "pinia": "^3.0.3",
+    "pinia-plugin-persistedstate": "^4.4.1",
+    "threejs-dice": "github:Dreaming-Codes/threejs-dice",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/node": "^22.16.5",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.7.0",
+    "npm-run-all2": "^8.0.4",
+    "typescript": "~5.8.0",
+    "vite": "^7.0.6",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vue-tsc": "^3.0.4"
+  }
+}

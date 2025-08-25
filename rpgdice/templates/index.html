@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+  <section style="text-align: center; margin-bottom: 3rem;">
+    <h1>Vue + Django Annotated Guide</h1>
+  </section>
+
+  <section style="text-align: center">
+    <!-- django-vue: basic-component@4 -->
+    <dice-icon value="20" size="20" class="allow-undefined-content">
+      <!-- django-vue: hide-undefined-content@2 -->
+      <!-- Content inside a custom element tag is normally displayed then replaced once the component is defined -->
+      <!-- This project uses CSS rules to hide the inner content of undefined elements, except for the allow-undefined-content class  -->
+      <article>
+        <p>If you see this message, then the Vue source is not properly loaded.</p>
+        <p>Check the README.md for instructions on running this project.</p>
+      </article>
+    </dice-icon>
+  </section>
+
+  <section>
+    <article>
+      <p>See README.md for instructions for running this project.</p>
+      <p>Roll some dice from the <a href="{% url 'dice-preset-list' %}">My Presets</a> page.</p>
+      <p>To modify presets, log in to the <a href="{% url 'admin:index' %}">admin</a> interface using credentials <code>admin</code>/<code>admin</code>.
+      <p>View the README.md for an annotated guide to the techniques used in this demo and how to integrate into your
+        own project.</p>
+    </article>
+  </section>
+
+  <details>
+    <summary role="button" style="background: inherit; color: #ccc">Third party packages used in this demo</summary>
+    <package-info></package-info>
+  </details>
+
+{% endblock %}
+
+{% block body_end %}
+
+  {# django-vue: multi-entrypoints@2 #}
+  {# The packages info components are only used on this page, so include them here instead of base template #}
+  <script type="module" src="{{ vue_frontend_url }}packages.js"></script>
+
+  {# django-vue: passing-complex-data@3 #}
+  {{ package_info | json_script:"package_info" }}
+  <script type="module">
+      // django-vue: passing-complex-data@2
+      import("{{ vue_frontend_url }}packages.js").then((v) => {
+          v.packageStore.setPackageInfo(JSON.parse(document.getElementById('package_info').textContent));
+      });
+  </script>
+{% endblock %}

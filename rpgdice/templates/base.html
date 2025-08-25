@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% if title %}{{ title }} | {% endif %}My Presets{% endblock %}</title>
+
+  {% load static %}
+
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <link href="{% static 'dicefont/dicefont.css' %}" rel="stylesheet">
+
+  {% block extra_css %}{% endblock %}
+
+</head>
+<body>
+
+
+<div class="layout header-container">
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <strong><a href="{% url 'index' %}">Annotated Guide</a></strong>
+        </li>
+      </ul>
+      <ul>
+        <li id="header-right">
+          <dice-key key-url="{% url 'dice-key' %}">
+            <span slot>Dice Key</span>
+          </dice-key>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <strong><a href="{% url 'dice-preset-list' %}">My Presets</a></strong>
+        </li>
+      </ul>
+    </nav>
+    {% block breadcrumbs %}{% endblock %}
+  </header>
+</div>
+
+
+<div class="layout">
+  <main>
+
+    {% if messages %}
+      {% for message in messages %}
+        <article>
+          {{ message.tags|capfirst }}
+          {{ message }}
+        </article>
+      {% endfor %}
+    {% endif %}
+
+    {% block page_header %}
+      {% if title %}
+        <hgroup>
+          <h1>{{ title }}</h1>
+          {% block header_actions %}{% endblock %}
+        </hgroup>
+      {% endif %}
+    {% endblock %}
+
+    <!-- main content area -->
+    {% block content %}{% endblock %}
+
+  </main>
+</div>
+
+<dialog id="modal"></dialog>
+
+{% block body_end %}{% endblock %}
+
+<!-- django-vue: basic-component@3 production@4 -->
+<script type="module" src="{{ vue_frontend_url }}main.js"></script>
+
+
+</body>
+</html>

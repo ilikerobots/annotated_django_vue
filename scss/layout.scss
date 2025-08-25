@@ -1,0 +1,61 @@
+@use "../node_modules/@picocss/pico/scss/colors" as *;
+
+
+/**  LAYOUT  ***********************************************/
+main {
+  position: relative;
+}
+
+.layout {
+  position: relative;
+
+}
+
+
+/**  HEADER  ***********************************************/
+.header-container {
+  background-color: $jade-500;
+
+  li a {
+    color: white;
+  }
+
+  header {
+    padding: 8px 0;
+  }
+
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
+nav li {
+  padding: 0
+}
+
+article > footer {
+  margin-top: 0;
+}
+
+
+input[type=search] {
+  border-radius: 0.25rem;
+}
+
+/**  DIALOG  ***********************************************/
+dialog {
+  display: flex !important;
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+dialog:not(:empty) {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+

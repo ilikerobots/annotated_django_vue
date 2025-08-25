@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dice Presets{% endblock %}
+
+{% block content %}
+
+  <section class="header-section">
+    <h1>
+      Dice Presets
+    </h1>
+    <div id="filter_indicator"></div>
+  </section>
+
+  {% include 'rpgdice/dice_settings.html' %}
+
+  <div class="preset-grid">
+    {% for preset in object_list %}
+
+      <dice-preset-card roll-url="{% url 'dice-preset-roll' preset.pk %}" preset-name="{{ preset.name }}">
+        <!-- django-vue: slot@2 -->
+        <div slot="content" class="preset-card-content compact">
+          {% if preset.icon %}
+            <i class="ra ra-{{ preset.icon }}"></i>
+          {% endif %}
+          <header>
+            <a href="{% url 'dice-preset-roll' preset.pk %}">
+              <b>{{ preset.name }}:</b> {{ preset.dice_notation }}
+            </a>
+          </header>
+        </div>
+      </dice-preset-card>
+
+    {% endfor %}
+  </div>
+
+{% endblock content %}
+
+{% block body_end %}
+
+  {# django-vue: multi-entrypoints@2 #}
+  {# The 3d-related components are only used on this page, so include them here instead of base template #}
+  <script type="module" src="{{ vue_frontend_url }}dice3d.js"></script>
+
+  {# django-vue: dynamic-registration@3 #}
+  {#  If our entrypoint has been set up to support it, then we can dynamically register only needed components #}
+  <script type="module">
+      import("{{ vue_frontend_url }}main.js").then((v) => {
+              v.registerDicePresetCard();
+              v.registerDiceColorChoice();
+              v.registerDiceEnable3d();
+              v.registerDicePresetNameFilter();
+     });
+  </script>
+
+{% endblock body_end %}

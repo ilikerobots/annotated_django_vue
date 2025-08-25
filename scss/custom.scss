@@ -1,0 +1,66 @@
+// django-vue: hide-undefined-content@1
+/****************************************************/
+*:not(:defined):not(.allow-undefined-content) {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+*:defined {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.15s ease-in-out;
+}
+
+
+#dice_preset_settings {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  z-index: 100;
+  max-width: 20rem;
+
+  &[open] {
+    box-shadow: #0003 5px 8px 8px 8px;
+    background-color: rgb(37, 44, 57)
+  }
+
+  summary {
+    font-family: serif;
+  }
+
+  summary[role=button]::after {
+    display: none;
+  }
+
+  form {
+    margin: 16px;
+  }
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+
+.preset-card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+
+  i.ra {
+    position: absolute;
+    right: 1rem;
+    font-size: 45px;
+  }
+
+  &.compact i.ra {
+    font-size: 18px;
+  }
+
+}
+

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Dice Roll Result - {{ preset.name }}{% endblock %}
+
+{% block content %}
+
+  <dice-preset-card roll-url="{% url 'dice-preset-roll' preset.id %}">
+    {# django-vue: slot@3 #}
+    <div slot="content" class="preset-card-content">
+      {% if preset.icon %}
+        <i class="ra ra-{{ preset.icon }}"></i>
+      {% endif %}
+      <header style="text-align: center">
+        <h1>{{ preset.name }}</h1>
+        <h5> {{ preset.dice_notation }}</h5>
+      </header>
+      <p>{{ preset.description }}</p>
+    </div>
+  </dice-preset-card>
+
+{% endblock %}
+
+
+{% block body_end %}
+   <script type="module">
+      import("{{ vue_frontend_url }}main.js").then((v) => {
+              v.registerDicePresetCard();
+     });
+  </script>
+{% endblock body_end %}
+

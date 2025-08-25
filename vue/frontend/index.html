@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/fponticelli/dicefont/fc6b8c47/dist/dicefont/dicefont.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+</head>
+<body>
+<script type="module">
+    import("/src/main.ts").then((v) => {
+        v.register({'icon-color-choice': v.diceColorChoice})
+    });
+</script>
+
+<!-- django-vue: vue-dev-server -->
+<p>
+<dice-icon size="20" value="3"></dice-icon>
+<dice-icon size="10" value="9"></dice-icon>
+<dice-icon size="8" value="3"></dice-icon>
+<dice-icon size="4" value="2"></dice-icon>
+<dice-icon size="12" value="9"></dice-icon>
+</p>
+
+<icon-color-choice></icon-color-choice>
+
+
+</body>
+</html>

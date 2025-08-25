@@ -1,0 +1,118 @@
+- tag: basic-component
+  title: A first basic component
+  description: >
+    First, create a new Vue component (1).  
+    Next, create a Web Component in an entrypoint file (2).
+    Ensure the entrypoint is included in the Django template tree (3).  
+    Finally, use the component by custom tag name (4), passing property values as simple HTML attributes.
+
+- tag: render-partial-view
+  title: Rendering Partial HTML responses
+  description: >
+    Components can make AJAX requests to Django views and render the partial pre-rendered HTML responses.  
+    First, create a view that will return partial HTML (1). Next, a component will listen for an event (2) and then 
+    make the AJAX request (3). The response HTML is displayed directly in an element using v-html (4). 
+
+- tag: ajax-json-view
+  title: Consuming JSON responses from AJAX requests
+  description: >
+    Components consume AJAX responses that include JSON, and this can be done without needing a full REST API. Simply
+    return a JSONResponse (1) in the view. A component makes the AJAX request and consumes the JSON payload (2).
+
+- tag: pinia
+  title: Shared State with Pinia
+  description: >
+    Components can share state information with other components using Pinia. First, create a Pinia instance in an 
+    entrypoint (1). Next, designate which components need access to Pinia (2). Then, create a store with reactive state 
+    variables (3). In components, access the store (4), then use the state variables within the 
+    component (5, 6).
+
+- tag: pinia-persist
+  title: Persisting Pinia state across page loads
+  description: >
+    Unless persisted, Pinia state is lost when the page is reloaded. State can be persisted across page loads by using
+    pinia-plugin-persistedstate (1), which uses the browser's native storage to serialize and deserialize state. To 
+    persist a store, use the persist: true option in the store config (2) to persist the entire store. It is also 
+    possible to persist only specific state variables. 
+
+- tag: slot
+  title: Slot rendered Django template content into a Vue component
+  description: >
+    A Vue component can provide one or more slots (1). This is very useful for passing in content that includes
+    Django content (2), such as static and url template tags. Slots also allow different content to be passed to the
+    same component (3). 
+
+- tag: teleport
+  title: Teleport Vue content anywhere in your page
+  description: >
+    Vue components can teleport content anywhere in the DOM. This can even be done conditionally 
+    (e.g., with v-if or :disabled). Teleported content can include any normal Vue logic, despite appearing anywhere
+    on the page (2,3).
+
+- tag: multi-entrypoints
+  title: Multiple entry points and selective loading
+  description: >
+    Configure multiple entry points in Vite (1) and load components only on pages that need them (2, 3).  If dynamic
+    imports are used within the registration function, then those components (along with their dependencies) will
+    only be loaded on pages that need them.
+
+- tag: dynamic-registration
+  title: Dynamically register only needed custom elements
+  description: >
+    Instead of directly registering custom elements in the entrypoint, use a helper function (1) to
+    allow the calling page to selectively register components (2).  
+
+- tag: passing-complex-data
+  title: Passing complex data to a Vue component without Ajax
+  description: >
+    Vue will coerce values for string, boolean, and number properties from the HTML attributes. However, anything
+    more complex will simply be treated as a string. If a component needs to receive more complex data, the simplest
+    approach is usually with an AJAX request. However, if avoiding an AJAX request is desired, complex data can still be passed in
+    other ways. One way is to expose the Pinia store in an entrypoint (1). Then call a method or use a variable from 
+    the Django template (2) to set the state in conjunction with the Django json_script template tag (3). Components
+    can then use the store normally to access the data (4).
+
+- tag: vue-dev-server
+  title: Using the Vue dev server
+  description: >
+    Even when using Django Template, the Vue development server features such as Hot Module Replacement (HMR)
+    and Vue Dev Tools work as expected. The Vue dev server frontend can also be accessed from a browser, usually on
+    http://localhost:5173. This feature can often be useful for larger teams, where the JavaScript crew can develop
+    components without having to run a Django server.
+
+- tag: scss
+  title: Styling Vue Components with SCSS
+  description: >
+    Vue components can be styled with SCSS (1). If the Django project is using an SCSS framework, those
+    project files can be imported (2) as needed to refer to variables and mixins (3).  
+
+- tag: hide-undefined-content
+  title: Hiding undefined content with CSS
+  description: >
+    Normally, the content inside a custom tag is displayed even if the tag is not defined. Since components are registered 
+    near the end of the body, this means there can be a brief flash of improperly rendered slot content 
+    before the tag becomes defined. To prevent this, add CSS styles (1) that hide content inside of 
+    undefined tags. Exceptions to this rule can be made if needed (2).
+
+- tag: css-injected-by-js
+  title: CSS injected by JavaScript
+  description: >
+    During a production build, Vite will normally produce separate JavaScript and CSS files. This means both would 
+    normally need to be loaded in the Django template. This is cumbersome at best, but can be avoided
+    with a plugin that will automatically inject the CSS when the JavaScript entrypoint is loaded (1).
+
+- tag: preserve-entry-signatures
+  title: Allow exports in entrypoints
+  description: >
+    Vite will normally strip any exports from entrypoints that are unused in the JavaScript project, as part of its 
+    optimization. However, if calling exports from Django is needed, Vite must be configured to preserve the entrypoint 
+    exports (1).
+
+- tag: production
+  title: Production build
+  description: >
+    In a production build, Vite will produce JavaScript files. Vite can output these to a Django static 
+    directory (1) and from that point they can be treated as normal static files. To prevent having to manually swap
+    URLs between static production and Vue devserver, set up settings based on the Django DEBUG setting (2).
+    Use a context processor to add this to the template context (3), and then use the new context variable to refer to 
+    the correct entrypoint URL throughout templates (4).
