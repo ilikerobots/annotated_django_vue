@@ -30,6 +30,9 @@ If you have not already cloned this project, do so:
 ### 3. Install Python dependencies
 - pip install -r requirements.txt
 
+### 3.5 Install PicoCSS sass
+- npm install
+
 ### 4. Apply database migrations
 - python manage.py migrate
 
